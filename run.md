@@ -8,7 +8,8 @@ bash run.sh
 ```console
 git clone Genvis
 
-python config.py --path /path/to/
+mkdir /data/path/config
+python config.py --path /data/path/config/xxx.yaml
 # modify config parameters
 # modify model parameters with model parameters (vit required)
 

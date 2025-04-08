@@ -42,6 +42,7 @@ parser = argparse.ArgumentParser(description='Process hyperparameters...')
 parser.add_argument('--content_path', '-c', type=str)
 parser.add_argument("--iteration", '-i', type=int)
 parser.add_argument("--resume", '-r', type=int, default=-1)
+parser.add_argument("--config_name", type=str, default="tdvi")
 args = parser.parse_args()
 
 ########################################################################################################################
@@ -50,6 +51,7 @@ args = parser.parse_args()
 CONTENT_PATH = args.content_path
 ITERATION = args.iteration
 RESUME = args.resume
+VIS_METHOD = args.config_name
 
 sys.path.append(CONTENT_PATH)
 config = load_cfg(os.path.join(CONTENT_PATH, "config", f"{VIS_METHOD}.yaml"))

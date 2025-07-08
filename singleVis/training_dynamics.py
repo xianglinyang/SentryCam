@@ -17,9 +17,9 @@ import matplotlib.pyplot as plt
 def softmax(x):
     return np.exp(x) / np.sum(np.exp(x))
 
-def cross_entropy(data, y):
+def cross_entropy(data, y, class_num=10):
     log_p = np.array([np.log(softmax(data[i])) for i in range(len(data))])
-    y_onehot = np.eye(len(np.unique(y)))[y]
+    y_onehot = np.eye(class_num)[y]
     loss = - np.sum(y_onehot * log_p, axis=1)
     return loss
 
@@ -35,22 +35,19 @@ class TD:
 
     def loss_dynamics(self, train=True):
         EPOCH_START, EPOCH_END, EPOCH_PERIOD = self.range
-        if train:
-            labels = self.data_provider.train_labels(EPOCH_START)
-        else:
-            labels = self.data_provider.test_labels(EPOCH_START)
-
         # epoch, num, 1
         losses = None
 
-        for epoch in range(EPOCH_START, EPOCH_END+1, EPOCH_PERIOD):
+        for epoch in range(EPOCH_START, EPOCH_END+EPOCH_PERIOD, EPOCH_PERIOD):
             if train:
                 representation = self.data_provider.train_representation(epoch)
+                labels = self.data_provider.train_labels(epoch)
             else:
                 representation = self.data_provider.test_representation(epoch)
-            pred = self.data_provider.get_pred(epoch, representation)
+                labels = self.data_provider.test_labels(epoch)
 
-            loss = cross_entropy(pred, labels)
+            pred = self.data_provider.get_pred(epoch, representation)
+            loss = cross_entropy(pred, labels, class_num=len(self.data_provider.classes))
 
             if losses is None:
                 losses = np.expand_dims(loss, axis=0)

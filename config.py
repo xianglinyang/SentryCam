@@ -13,19 +13,19 @@ Parameters need to be rewrite:
 default_C = CN()
 
 default_C.SETTING = "normal"
-default_C.DATASET=""
-default_C.CLASSES = []
-default_C.GPU = 0
-default_C.EPOCH_START=-1
-default_C.EPOCH_PERIOD=-1
-default_C.EPOCH_END=-1
+default_C.DATASET="CIFAR10"
+default_C.CLASSES = list(range(10))
+default_C.GPU = 1
+default_C.EPOCH_START=1
+default_C.EPOCH_PERIOD=1
+default_C.EPOCH_END=35
 default_C.EPOCH_NAME="Epoch"
 
 # Training
 default_C.TRAINING = CN()
-default_C.TRAINING.NET=""
-default_C.TRAINING.train_num=-1
-default_C.TRAINING.test_num=-1
+default_C.TRAINING.NET="resnet18"
+default_C.TRAINING.train_num=50000
+default_C.TRAINING.test_num=10000
 
 # Visualization
 ## basic
@@ -38,6 +38,8 @@ default_C.VISUALIZATION.LAMBDA1=1.0
 default_C.VISUALIZATION.LAMBDA2=0.3
 default_C.VISUALIZATION.ENCODER_DIMS=[512,256,128,64,32,2]
 default_C.VISUALIZATION.DECODER_DIMS=[2,32,64,128,256,512]
+# default_C.VISUALIZATION.ENCODER_DIMS=[400,256,128,64,32,2]
+# default_C.VISUALIZATION.DECODER_DIMS=[2,32,64,128,256,400]
 default_C.VISUALIZATION.VIS_MODEL="cnAE"
 default_C.VISUALIZATION.N_NEIGHBORS=15
 default_C.VISUALIZATION.MAX_EPOCH=20
@@ -67,15 +69,14 @@ def update_cfg(l):
 
 
 def save_cfg(cfg, path):
-    with open(path, "w") as f:
-        f.write(cfg.dump())
+  with open(path, "w") as f:
+      f.write(cfg.dump())
 
 
 def load_cfg(filepath):
    cfg = get_cfg_defaults()
    cfg.merge_from_file(filepath)
    return cfg
-
 
 if __name__ == "__main__":
   import argparse

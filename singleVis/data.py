@@ -119,7 +119,7 @@ class NormalDataProvider(DataProvider):
             #     testing_data = testing_data[test_index]
 
             model_location = os.path.join(self.model_path, "{}_{:d}".format(self.epoch_name, n_epoch), "subject_model.pth")
-            self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")))
+            self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")), strict=False)
             self.model = self.model.to(self.DEVICE)
             self.model.eval()
 
@@ -183,7 +183,7 @@ class NormalDataProvider(DataProvider):
         testing_data = testing_data[test_index]
 
         model_location = os.path.join(self.model_path, "{}_{:d}".format(self.epoch_name, n_epoch), "subject_model.pth")
-        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")))
+        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")), strict=False)
         self.model = self.model.to(self.DEVICE)
         self.model.eval()
 
@@ -467,7 +467,7 @@ class NormalDataProvider(DataProvider):
 
     def prediction_function(self, epoch):
         model_location = os.path.join(self.model_path, "{}_{:d}".format(self.epoch_name, epoch), "subject_model.pth")
-        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")))
+        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")), strict=False)
         self.model.to(self.DEVICE)
         self.model.eval()
 
@@ -477,7 +477,7 @@ class NormalDataProvider(DataProvider):
 
     def feature_function(self, epoch):
         model_location = os.path.join(self.model_path, "{}_{:d}".format(self.epoch_name, epoch), "subject_model.pth")
-        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")))
+        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")), strict=False)
         self.model = self.model.to(self.DEVICE)
         self.model.eval()
 
@@ -486,7 +486,7 @@ class NormalDataProvider(DataProvider):
     
     def model_function(self, epoch):
         model_location = os.path.join(self.model_path, "{}_{:d}".format(self.epoch_name, epoch), "subject_model.pth")
-        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")))
+        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")), strict=False)
         self.model = self.model.to(self.DEVICE)
         self.model.eval()
 
@@ -810,7 +810,7 @@ class ActiveLearningDataProvider(DataProvider):
 
     def prediction_function(self, iteration):
         model_location = os.path.join(self.model_path, "{}_{:d}".format(self.iteration_name, iteration), "subject_model.pth")
-        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")))
+        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")), strict=False)
         self.model.to(self.DEVICE)
         self.model.eval()
 
@@ -819,7 +819,7 @@ class ActiveLearningDataProvider(DataProvider):
 
     def feature_function(self, epoch):
         model_location = os.path.join(self.model_path, "{}_{:d}".format(self.iteration_name, epoch), "subject_model.pth")
-        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")))
+        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")), strict=False)
         self.model.to(self.DEVICE)
         self.model.eval()
 
@@ -1130,7 +1130,7 @@ class DenseActiveLearningDataProvider(ActiveLearningDataProvider):
 
     def prediction_function(self, iteration, epoch):
         model_location = os.path.join(self.model_path, "{}_{}".format(self.iteration_name, iteration), "{}_{:d}".format(self.epoch_name, epoch), "subject_model.pth")
-        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")))
+        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")), strict=False)
         self.model.to(self.DEVICE)
         self.model.eval()
 
@@ -1139,7 +1139,7 @@ class DenseActiveLearningDataProvider(ActiveLearningDataProvider):
 
     def feature_function(self, iteration, epoch):
         model_location = os.path.join(self.model_path, "{}_{}".format(self.iteration_name, iteration), "{}_{:d}".format(self.epoch_name, epoch), "subject_model.pth")
-        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")))
+        self.model.load_state_dict(torch.load(model_location, map_location=torch.device("cpu")), strict=False)
         self.model = self.model.to(self.DEVICE)
         self.model.eval()
 

@@ -21,8 +21,28 @@
 #     CUDA_VISIBLE_DEVICES=1 nohup python tdvi.py --content_path ${content_path} -i ${iterations[$i]} -r ${resumes[$i]} 1>> ${content_path}/tdvi_log 2>&1
 # done
 
+# ##############################################################
+# content_path="/mnt/hdd1/ljiahao/xianglin/SentryCam/ResNet_CIFAR10_NONE_CF"
+
+# resumes=($(seq 0 1 34))
+# iterations=($(seq 1 1 35))
+# for i in {0..34}; 
+# do
+#     nohup python tdvi.py --content_path ${content_path} -i ${iterations[$i]} -r ${resumes[$i]} 
+# done
+
+# ##############################################################
+# content_path="/mnt/hdd1/ljiahao/xianglin/SentryCam/ResNet_CIFAR10_EWC_CF"
+
+# resumes=($(seq 0 1 34))
+# iterations=($(seq 1 1 35))
+# for i in {0..34}; 
+# do
+#     nohup python tdvi.py --content_path ${content_path} -i ${iterations[$i]} -r ${resumes[$i]} 
+# done
+
 ##############################################################
-content_path="/data2/xianglin/SentryCam/ResNet_CIFAR10_NONE_CF"
+content_path="/mnt/hdd1/ljiahao/xianglin/SentryCam/ResNet_CIFAR10_ER_CF"
 
 resumes=($(seq 0 1 34))
 iterations=($(seq 1 1 35))
